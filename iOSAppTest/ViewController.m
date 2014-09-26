@@ -163,77 +163,32 @@
     
 }
 
+
+
 - (void) makeRequestForNotifications
 {
+    MessageModel *messagesMethods = [[MessageModel alloc] init];
+
     [FBRequestConnection startWithGraphPath:@"me/notifications?fields=application,link&include_read=true"
                           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
 
         if (!error) {
-            // Success! Include your code to handle the results here
+            // FB request was a success
             
             if (result[@"data"]) {
-                
-                NSMutableArray *newMessagesArray = [[NSMutableArray alloc] init];
-                NSMutableString *newMessagesFound = [[NSMutableString alloc] init];
-                Message *tempMessage = [[Message alloc] init];
-                MessageModel *messagesMethods = [[MessageModel alloc] init];
-
-                BOOL foundNew = NO;
-                
+                // There is FB data
+ 
                 NSArray *jsonArray = result[@"data"];
+                NSMutableArray *newMessagesArray = [[NSMutableArray alloc] init];
+            
+                // Get new notifactions
+                newMessagesArray = [messagesMethods getNewNotifications:jsonArray withMessagesArray:MessagesArray];
                 
-                // Look for "Photos" messages
-                for (int i=0; i<jsonArray.count; i=i+1)
-                {
-                    NSDictionary *newMessage = jsonArray[i];
-                    
-                    if ([newMessage[@"application"][@"name"] isEqual: @"Photos"])
-                    {
-                        
-                        if (![messagesMethods existNotification:newMessage[@"id"] withMessagesArray:MessagesArray])
-                        {
-                            // It's a new notification!
-
-                            tempMessage = [[Message alloc] init];
-                            tempMessage.fb_notif_id = newMessage[@"id"];
-                            tempMessage.fb_link = newMessage[@"link"];
-                            
-                            // Take the photo ID and message ID from FB link
-                            
-                            NSMutableString *msgIDfromLink = [[NSMutableString alloc] init];
-                            
-                            [msgIDfromLink appendString:[messagesMethods getPhotoID:tempMessage.fb_link]];
-                            tempMessage.fb_photo_id = msgIDfromLink;
-                            
-                            [msgIDfromLink appendString:@"_"];
-                            
-                            [msgIDfromLink appendString:[messagesMethods getCommentID:tempMessage.fb_link]];
-                             
-                            tempMessage.fb_msg_id = msgIDfromLink;
-                            
-                            // Add new message object
-                            [newMessagesArray addObject:tempMessage];
-                            
-                            // Create string with messages IDs for FB request
-                            if (foundNew)
-                            {
-                                [newMessagesFound appendString:@","];
-                            }
-                            else
-                            {
-                                foundNew = YES;
-                            }
-                            [newMessagesFound appendString:msgIDfromLink];
-
-                        }
-                    }
-                }
-                
-                NSLog(@"New messages %@",newMessagesFound);
+                // Get message details for those notifications
+                newMessagesArray = [self makeRequestForMessageDetails:newMessagesArray];
                 
             }
             
-
         } else {
             // An error occurred, we need to handle the error
             // Check out our error handling guide: https://developers.facebook.com/docs/ios/errors/
@@ -242,7 +197,38 @@
     }];
 }
 
+- (NSMutableArray*) makeRequestForMessageDetails:(NSMutableArray*)messagesArray;
+{
+ 
+    MessageModel *messagesMethods = [[MessageModel alloc] init];
+    NSMutableArray *updatedMessagesArray = [[NSMutableArray alloc] init];
+
+    // Create string for FB request
+    NSMutableString *requestMessagesList = [[NSMutableString alloc] init];
+    [requestMessagesList appendString:@"?ids="];
+    [requestMessagesList appendString:[messagesMethods getMessagesIDs:messagesArray]];
+    
+    // NSLog(@"request para FB: %@", requestMessagesList);
+
+    [FBRequestConnection startWithGraphPath:requestMessagesList
+                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                              
+                              if (!error) {
+                                  // FB request was a success
+                                  
+                                  NSArray *jsonArray = result;
+                            
+                              }
+                                  
+                              else {
+                                  // An error occurred, we need to handle the error
+                                  // Check out our error handling guide: https://developers.facebook.com/docs/ios/errors/
+                                  NSLog(@"error %@", error.description);
+                              }
+                          } ];
+    
+    return updatedMessagesArray;
+}
+
 
 @end
-
-

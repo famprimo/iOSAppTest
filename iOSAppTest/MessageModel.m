@@ -113,4 +113,83 @@
     return commentID;
 }
 
+
+- (NSMutableArray*)getNewNotifications:(NSArray*)arrayResultsData withMessagesArray:(NSMutableArray*)messageList;
+{
+    // Method that takes the result of a call to FB and return the new notifications
+    
+    NSMutableArray *messagesArray = [[NSMutableArray alloc] init];
+    
+    Message *tempMessage = [[Message alloc] init];
+    MessageModel *messagesMethods = [[MessageModel alloc] init];
+    
+    // Look for "Photos" notifications
+    
+    for (int i=0; i<arrayResultsData.count; i=i+1)
+    {
+        NSDictionary *newMessage = arrayResultsData[i];
+        
+        if ([newMessage[@"application"][@"name"] isEqual: @"Photos"]) {
+            
+            if (![messagesMethods existNotification:newMessage[@"id"] withMessagesArray:messageList]) {
+                // It's a new notification!
+                
+                tempMessage = [[Message alloc] init];
+                tempMessage.fb_notif_id = newMessage[@"id"];
+                tempMessage.fb_link = newMessage[@"link"];
+                
+                // Take the photo ID and message ID from FB link
+                
+                NSMutableString *msgIDfromLink = [[NSMutableString alloc] init];
+                
+                [msgIDfromLink appendString:[messagesMethods getPhotoID:tempMessage.fb_link]];
+                tempMessage.fb_photo_id = msgIDfromLink;
+                
+                [msgIDfromLink appendString:@"_"];
+                
+                [msgIDfromLink appendString:[messagesMethods getCommentID:tempMessage.fb_link]];
+                
+                tempMessage.fb_msg_id = msgIDfromLink;
+                
+                // Add new message object
+                [messagesArray addObject:tempMessage];
+                
+            }
+        }
+    }
+    
+    return messagesArray;
+    
+}
+
+- (NSString*)getMessagesIDs:(NSMutableArray*)messagesArray;
+{
+    // Method that returns the IDs of all the Messages in the array sent
+    
+    Message *tempMessage;
+        
+    NSMutableString *messagesIDList = [[NSMutableString alloc] init];
+    
+    for (int i=0; i<messagesArray.count; i=i+1)
+    {
+        if (i>0) { [messagesIDList appendString:@","]; }
+        
+        tempMessage = [[Message alloc] init];
+        tempMessage = (Message *)messagesArray[i];
+        
+        [messagesIDList appendString:tempMessage.fb_msg_id];
+    }
+    
+    return messagesIDList;
+}
+
+- (BOOL)updateMessagesArray:(NSMutableArray*)messagesArray withMessage:(NSString*)messageToUpdate forMessageID:(NSString*)messageID;
+{
+    // Method that search a Messages array and update an specific message with the details
+    
+    BOOL updateSuccessful = NO;
+    
+    return updateSuccessful;
+}
+
 @end

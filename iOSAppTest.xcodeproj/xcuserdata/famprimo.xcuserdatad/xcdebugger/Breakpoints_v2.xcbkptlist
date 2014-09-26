@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSAppTest/ViewController.m"
-            timestampString = "433307908.763816"
+            timestampString = "433395265.631011"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "-makeRequestForNotifications"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,44 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSAppTest/ViewController.m"
-            timestampString = "433306084.497058"
+            timestampString = "433395279.920792"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "-makeRequestForNotifications"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iOSAppTest/MessageModel.m"
-            timestampString = "433307866.447661"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "-getCommentID:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iOSAppTest/MessageModel.m"
-            timestampString = "433307870.413425"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "-getPhotoID:"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "-makeRequestForMessageDetails:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSAppTest/ViewController.m"
-            timestampString = "433307945.802584"
+            timestampString = "433396176.410341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
-            landmarkName = "-makeRequestForNotifications"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "-makeRequestForMessageDetails:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSAppTest/ViewController.m"
-            timestampString = "433308142.536319"
+            timestampString = "433396331.626072"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
-            landmarkName = "-makeRequestForNotifications"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "-makeRequestForMessageDetails:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
