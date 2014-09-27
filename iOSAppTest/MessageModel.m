@@ -137,6 +137,15 @@
                 tempMessage = [[Message alloc] init];
                 tempMessage.fb_notif_id = newMessage[@"id"];
                 tempMessage.fb_link = newMessage[@"link"];
+                tempMessage.fb_from_id = newMessage[@"from"][@"id"];
+                tempMessage.fb_from_name = newMessage[@"from"][@"name"];
+                tempMessage.fb_created_time = newMessage[@"created_time"];
+                
+                NSDateFormatter *formatFBdates = [[NSDateFormatter alloc] init];
+                [formatFBdates setDateFormat:@"yyyy-MM-dd HH:mm:ss z"];    // 2014-09-27T16:41:15+0000
+                tempMessage.datetime = [formatFBdates dateFromString:tempMessage.fb_created_time];
+                
+                // PARA MOSTRAR LOS MENSAJES USAR https://github.com/nikilster/NSDate-Time-Ago
                 
                 // Take the photo ID and message ID from FB link
                 

@@ -107,11 +107,11 @@
 
 {
     
-    [self makeRequestForNotifications];
+    //[self makeRequestForNotifications];
     
-    /*
+    
     // These are the permissions we need:
-    NSArray *permissionsNeeded = @[@"public_profile", @"manage_notifications"];
+    NSArray *permissionsNeeded = @[@"public_profile", @"manage_notifications", @"read_stream"];
     
     // Request the permissions the user currently has
     [FBRequestConnection startWithGraphPath:@"/me/permissions"
@@ -159,7 +159,7 @@
                               }
                           }];
     
-    */
+    
     
 }
 
@@ -172,11 +172,9 @@
     [FBRequestConnection startWithGraphPath:@"me/notifications?fields=application,link&include_read=true"
                           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
 
-        if (!error) {
-            // FB request was a success
+        if (!error) {  // FB request was a success!
             
-            if (result[@"data"]) {
-                // There is FB data
+            if (result[@"data"]) {   // There is FB data!
  
                 NSArray *jsonArray = result[@"data"];
                 NSMutableArray *newMessagesArray = [[NSMutableArray alloc] init];
@@ -187,6 +185,17 @@
                 // Get message details for those notifications
                 newMessagesArray = [self makeRequestForMessageDetails:newMessagesArray];
                 
+                
+                /* Code for sorting arrays
+                 
+                 NSArray *sortedArray;
+                 sortedArray = [drinkDetails sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                 NSDate *first = [(Person*)a birthDate];
+                 NSDate *second = [(Person*)b birthDate];
+                 return [first compare:second];
+                 }];
+                 
+                 */
             }
             
         } else {
@@ -213,13 +222,20 @@
     [FBRequestConnection startWithGraphPath:requestMessagesList
                           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                               
-                              if (!error) {
-                                  // FB request was a success
+                              if (!error) { // FB request was a success!
                                   
-                                  NSArray *jsonArray = result;
-                            
+                                  Message *tempMessage;
+                                  
+                                  for (int i=0; i<messagesArray.count; i=i+1)
+                                  {
+                                      tempMessage = [[Message alloc] init];
+                                      tempMessage = (Message *)messagesArray[i];
+                                      
+                                      tempMessage.message = result[tempMessage.fb_msg_id][@"message"];
+                                      
+                                      [updatedMessagesArray addObject:tempMessage];
+                                  }
                               }
-                                  
                               else {
                                   // An error occurred, we need to handle the error
                                   // Check out our error handling guide: https://developers.facebook.com/docs/ios/errors/
