@@ -186,16 +186,19 @@
                 newMessagesArray = [self makeRequestForMessageDetails:newMessagesArray];
                 
                 
-                /* Code for sorting arrays
+                // Code for sorting arrays
                  
-                 NSArray *sortedArray;
-                 sortedArray = [drinkDetails sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                 NSDate *first = [(Person*)a birthDate];
-                 NSDate *second = [(Person*)b birthDate];
-                 return [first compare:second];
-                 }];
+                NSArray *sortedArray;
+                sortedArray = [newMessagesArray sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                                NSDate *first = [(Message*)a datetime];
+                                NSDate *second = [(Message*)b datetime];
+                                return [first compare:second];
+                                }];
+                
+                NSLog(@"Array");
+                
                  
-                 */
+                
             }
             
         } else {
@@ -211,7 +214,7 @@
  
     MessageModel *messagesMethods = [[MessageModel alloc] init];
     NSMutableArray *updatedMessagesArray = [[NSMutableArray alloc] init];
-
+    
     // Create string for FB request
     NSMutableString *requestMessagesList = [[NSMutableString alloc] init];
     [requestMessagesList appendString:@"?ids="];
@@ -232,9 +235,12 @@
                                       tempMessage = (Message *)messagesArray[i];
                                       
                                       tempMessage.message = result[tempMessage.fb_msg_id][@"message"];
+                                      tempMessage.fb_from_id = result[tempMessage.fb_msg_id][@"from"][@"id"];
+                                      tempMessage.fb_from_name = result[tempMessage.fb_msg_id][@"from"][@"name"];
                                       
                                       [updatedMessagesArray addObject:tempMessage];
                                   }
+
                               }
                               else {
                                   // An error occurred, we need to handle the error

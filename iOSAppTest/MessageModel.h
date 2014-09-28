@@ -17,5 +17,5 @@
 - (NSString*)getCommentID:(NSString*)facebookLink;
 - (NSMutableArray*)getNewNotifications:(NSArray*)arrayResultsData withMessagesArray:(NSMutableArray*)messageList;
 - (NSString*)getMessagesIDs:(NSMutableArray*)messagesArray;
-- (BOOL)updateMessagesArray:(NSMutableArray*)messagesArray withMessage:(NSString*)messageToUpdate forMessageID:(NSString*)messageID;
+
 @end
