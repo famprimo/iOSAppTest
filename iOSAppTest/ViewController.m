@@ -26,7 +26,7 @@
     // self.loginView.readPermissions = @[@"public_profile", @"email", @"user_friends"];
     [_loginView setReadPermissions:@[@"public_profile"]];
     [_loginView setDelegate:self];
-    _objectID = nil;
+    //_objectID = nil;
 
     MessagesArray = [[[MessageModel alloc] init] getMessages:MessagesArray];
 
@@ -107,9 +107,9 @@
 
 {
     
-    //[self makeRequestForNotifications];
+    [self makeRequestForNotifications];
     
-    
+    /*
     // These are the permissions we need:
     NSArray *permissionsNeeded = @[@"public_profile", @"manage_notifications", @"read_stream"];
     
@@ -159,7 +159,7 @@
                               }
                           }];
     
-    
+    */
     
 }
 

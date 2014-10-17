@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C01E173D19D3999600F90907 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = C01E173A19D3999600F90907 /* Message.m */; };
 		C01E173E19D3999600F90907 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C01E173C19D3999600F90907 /* MessageModel.m */; };
+		C05EED3819F056960008CC49 /* MoveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C05EED3719F056960008CC49 /* MoveViewController.m */; };
 		C0AE7439199D9F2800687457 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0AE7438199D9F2800687457 /* Foundation.framework */; };
 		C0AE743B199D9F2800687457 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0AE743A199D9F2800687457 /* CoreGraphics.framework */; };
 		C0AE743D199D9F2800687457 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0AE743C199D9F2800687457 /* UIKit.framework */; };
@@ -41,6 +42,8 @@
 		C01E173A19D3999600F90907 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		C01E173B19D3999600F90907 /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
 		C01E173C19D3999600F90907 /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
+		C05EED3619F056960008CC49 /* MoveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveViewController.h; sourceTree = "<group>"; };
+		C05EED3719F056960008CC49 /* MoveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveViewController.m; sourceTree = "<group>"; };
 		C0AE7435199D9F2800687457 /* iOSAppTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSAppTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0AE7438199D9F2800687457 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C0AE743A199D9F2800687457 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -131,6 +134,8 @@
 				C0AE744A199D9F2800687457 /* Main.storyboard */,
 				C0AE744D199D9F2800687457 /* ViewController.h */,
 				C0AE744E199D9F2800687457 /* ViewController.m */,
+				C05EED3619F056960008CC49 /* MoveViewController.h */,
+				C05EED3719F056960008CC49 /* MoveViewController.m */,
 				C0AE7450199D9F2800687457 /* Images.xcassets */,
 				C0AE743F199D9F2800687457 /* Supporting Files */,
 			);
@@ -266,6 +271,7 @@
 				C0AE744F199D9F2800687457 /* ViewController.m in Sources */,
 				C01E173D19D3999600F90907 /* Message.m in Sources */,
 				C01E173E19D3999600F90907 /* MessageModel.m in Sources */,
+				C05EED3819F056960008CC49 /* MoveViewController.m in Sources */,
 				C0AE7449199D9F2800687457 /* AppDelegate.m in Sources */,
 				C0AE7445199D9F2800687457 /* main.m in Sources */,
 			);
